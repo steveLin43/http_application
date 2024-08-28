@@ -11,10 +11,23 @@ go get -u github.com/spf13/viper@v1.4.0
 go get -u gopkg.in/natefinch/lumberjack.v2
 ```
 
-### 驗證服務是否正常
+### Swagger 套件
+
+```
+go get -u github.com/swaggo/swag/cmd/swag
+go get -u github.com/swaggo/gin-swagger@v1.2.0
+go get -u github.com/swaggo/files
+go get -u github.com/alecthomas/template
+```
+
+### 驗證服務是否正常 & Swagger 是否安裝成功
+如果 swag 安裝失敗，可以執行 `go install github.com/swaggo/swag/cmd/swag@latest`
 ```
 go run main.go
+swag -v
+swag init
 ```
+檢視文件: `http://127.0.0.1:8000/swagger/index.html`
 
 ### 其他
 

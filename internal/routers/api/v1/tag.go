@@ -32,7 +32,7 @@ func (t Tag) List(c *gin.Context) {
 	valid, errs := app.BindAndValid(c, &param)
 	if !valid {
 		global.Logger.Errorf("app.BindAndValid errs: %v", errs)
-		errRsp := errcode.InvaildParams.WithDetails(errs.Errors()...)
+		errRsp := errcode.InvalidParams.WithDetails(errs.Errors()...)
 		response.ToErrorResponse(errRsp)
 		return
 	}
@@ -72,7 +72,7 @@ func (t Tag) Create(c *gin.Context) {
 	valid, errs := app.BindAndValid(c, &param)
 	if !valid {
 		global.Logger.Errorf("app.BindAndValid errs: %v", errs)
-		errRsp := errcode.InvaildParams.WithDetails(errs.Errors()...)
+		errRsp := errcode.InvalidParams.WithDetails(errs.Errors()...)
 		response.ToErrorResponse(errRsp)
 		return
 	}
@@ -107,7 +107,7 @@ func (t Tag) Update(c *gin.Context) {
 	valid, errs := app.BindAndValid(c, &param)
 	if !valid {
 		global.Logger.Errorf("app.BindAndValid errs: %v", errs)
-		errRsp := errcode.InvaildParams.WithDetails(errs.Errors()...)
+		errRsp := errcode.InvalidParams.WithDetails(errs.Errors()...)
 		response.ToErrorResponse(errRsp)
 		return
 	}
@@ -139,7 +139,7 @@ func (t Tag) Delete(c *gin.Context) {
 	valid, errs := app.BindAndValid(c, &param)
 	if !valid {
 		global.Logger.Errorf("app.BindAndValid errs: %v", errs)
-		errRsp := errcode.InvaildParams.WithDetails(errs.Errors()...)
+		errRsp := errcode.InvalidParams.WithDetails(errs.Errors()...)
 		response.ToErrorResponse(errRsp)
 		return
 	}

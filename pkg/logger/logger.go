@@ -158,9 +158,17 @@ func (l *Logger) Fatalf(format string, v ...interface{}) {
 }
 
 func (l *Logger) Error(v ...interface{}) {
-	l.Output(LevelInfo, fmt.Sprint(v...))
+	l.Output(LevelError, fmt.Sprint(v...))
 }
 
 func (l *Logger) Errorf(format string, v ...interface{}) {
-	l.Output(LevelInfo, fmt.Sprintf(format, v...))
+	l.Output(LevelError, fmt.Sprintf(format, v...))
+}
+
+func (l *Logger) Panic(v ...interface{}) {
+	l.Output(LevelPanic, fmt.Sprint(v...))
+}
+
+func (l *Logger) Panicf(format string, v ...interface{}) {
+	l.Output(LevelPanic, fmt.Sprintf(format, v...))
 }

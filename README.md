@@ -32,6 +32,12 @@ swag init
 ```
 檢視文件: `http://127.0.0.1:8000/swagger/index.html`
 
+### 郵件套件(SMTP) & 介面限流套件
+```
+go get -u gopkg.in/gomail.v2
+go get -u github.com/juju/ratelimit@1.0.1
+```
+
 ### 驗證介面功能是否正常
 ```
 curl -X POST http://127.0.0.1:80000/api/v1/tags -F 'name=Go' -F created_by=eddycjy

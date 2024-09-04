@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"http_application/global"
 	"http_application/internal/model"
 	"http_application/internal/routers"
@@ -9,10 +10,17 @@ import (
 	"http_application/pkg/tracer"
 	"log"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/gin-gonic/gin"
 	"gopkg.in/natefinch/lumberjack.v2"
+)
+
+var (
+	port    string
+	runMode string
+	config  string
 )
 
 func init() {
@@ -35,6 +43,8 @@ func init() {
 	if err != nil {
 		log.Fatalf("init.setupTracer err: %v", err)
 	}
+
+	setupFlag()
 }
 
 // @title 部落格系統
@@ -55,7 +65,7 @@ func main() {
 }
 
 func setupSetting() error {
-	setting, err := setting.NewSetting()
+	setting, err := setting.NewSetting(strings.Split(config, ",")...)
 	if err != nil {
 		return err
 	}
@@ -84,6 +94,13 @@ func setupSetting() error {
 	global.JWTSetting.Expire *= time.Second
 	global.ServerSetting.ReadTimeout *= time.Second
 	global.ServerSetting.WriteTimeout *= time.Second
+
+	if port != "" {
+		global.ServerSetting.HttpPort = port
+	}
+	if runMode != "" {
+		global.ServerSetting.RunMode = runMode
+	}
 	return nil
 }
 
@@ -119,5 +136,14 @@ func setupTracer() error {
 	}
 
 	global.Tracer = jaegerTracer
+	return nil
+}
+
+func setupFlag() error {
+	flag.StringVar(&port, "port", "", "啟動通訊埠")
+	flag.StringVar(&runMode, "mode", "", "啟動模式")
+	flag.StringVar(&config, "config", "configs/", "指定要使用的設定檔路徑")
+	flag.Parse()
+
 	return nil
 }

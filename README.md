@@ -27,15 +27,18 @@ go get -u github.com/alecthomas/template
 如果 swag 安裝失敗，可以執行 `go install github.com/swaggo/swag/cmd/swag@latest`
 ```
 go run main.go
+go run main.go -port=8001 -mode=release -config=configs/
 swag -v
 swag init
 ```
 檢視文件: `http://127.0.0.1:8000/swagger/index.html`
 
-### 郵件套件(SMTP) & 介面限流套件
+### 郵件套件(SMTP) & 介面限流套件 & 檔案監聽套件
 ```
 go get -u gopkg.in/gomail.v2
 go get -u github.com/juju/ratelimit@1.0.1
+go get -u golang.org/x/sys/...
+go get -u github.com/fsnotify/fsnotify
 ```
 
 ### 驗證介面功能是否正常

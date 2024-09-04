@@ -6,6 +6,7 @@ import (
 	"http_application/internal/routers"
 	"http_application/pkg/logger"
 	"http_application/pkg/setting"
+	"http_application/pkg/tracer"
 	"log"
 	"net/http"
 	"time"
@@ -28,6 +29,11 @@ func init() {
 	err = setupDBEngine()
 	if err != nil {
 		log.Fatalf("init.setupDBEngine err: %v", err)
+	}
+
+	err = setupTracer()
+	if err != nil {
+		log.Fatalf("init.setupTracer err: %v", err)
 	}
 }
 
@@ -100,5 +106,18 @@ func setupDBEngine() error {
 		return err
 	}
 
+	return nil
+}
+
+func setupTracer() error {
+	jaegerTracer, _, err := tracer.NewJaegerTracer(
+		"blog-service",
+		"127.0.0.1:6831",
+	)
+	if err != nil {
+		return err
+	}
+
+	global.Tracer = jaegerTracer
 	return nil
 }

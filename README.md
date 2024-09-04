@@ -43,6 +43,29 @@ go get -u github.com/juju/ratelimit@1.0.1
 curl -X POST http://127.0.0.1:80000/api/v1/tags -F 'name=Go' -F created_by=eddycjy
 ```
 
+### 安裝鏈路追蹤的 jaeger 套件(用 Docker)(http://localhost:16686)
+
+```
+docker run -d --name jaeger \
+-e COLLECTOR_ZIPKIN_HTTP_PORT=9411 \
+-p 5775:5775/udp \
+-p 6831:6831/udp \
+-p 6832:6832/udp \
+-p 5778:5778 \
+-p 16686:16686 \
+-p 14268:14268 \
+-p 9411:9411 \
+jaegertracing/all-in-one:1.16
+```
+
+### 安裝 jaeger 的相關協力套件
+
+```
+go get -u github.com/opentracing/opentracing-go@v1.1.0
+go get -u github.com/uber/jaeger-client-go@v2.22.1
+go get -u github.com/eddycjy/opentracing-gorm
+```
+
 ### 其他
 
 共用元件: 錯誤碼標準化、設定檔管理、資料庫連接、記錄檔規則、回應處理

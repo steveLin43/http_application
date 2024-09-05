@@ -94,6 +94,9 @@ go get -u github.com/eddycjy/opentracing-gorm
 go build -Idflags "-X main.appName=我的部落格"
 ```
 
-### 其他
-
-共用元件包含: 錯誤碼標準化、設定檔管理、資料庫連接、記錄檔規則、回應處理
+### 終端快速鍵
+| 命令 | 訊號 | 含義 |
+| -------- | -------- | -------- |
+| ctrl+c | SIGINT | 希望處理程序中斷，處理程序結束 |
+| ctrl+z | SIGINT | 工作中斷，處理程序暫停 |
+| ctrl+\ | SIGINT | 處理程序結束和 dump core |

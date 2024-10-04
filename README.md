@@ -1,6 +1,7 @@
 # http_application
 
 使用 gin 架構進行開發
+參考資料：《用 Go 語言完成 6 個大型專案》第二章節 + https://github.com/go-programming-tour-book/blog-service
 
 ### 初始化 & 套件管理 & 檔案管理 & log & validator & DB & JWT
 
